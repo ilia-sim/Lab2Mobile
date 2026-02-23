@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.lab1mobile.R
 import com.example.lab1mobile.ui.theme.BusinessCardTheme
+import androidx.compose.foundation.layout.Box
 
 const val TABLET_SPEC = "spec:width=1280dp,height=800dp,dpi=240"
 const val PHONE_SPEC = "spec:width=411dp,height=891dp"
@@ -103,4 +104,21 @@ fun PortraitLayout(modifier: Modifier = Modifier) {
 @Composable
 fun LandscapeLayout(modifier: Modifier = Modifier) {
 
+}
+
+@Composable
+fun CenteredImage(
+    modifier: Modifier,
+    imageResId: Int,
+    contentDescription: String?
+) {
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = imageResId),
+            contentDescription = contentDescription
+        )
+    }
 }
