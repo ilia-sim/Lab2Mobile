@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Визитка</string>
-    <string name="person_name">Симонов Илья</string>
-    <string name="person_info">Студент третьего курса по специальности \"Программная инженерия\"</string>
-    <string name="avatar_description">Мой аватар</string>
-    <string name="contacts">Контакты:</string>
-    <string name="email_description">Электронная почта</string>
-    <string name="phone_number_description">Номер телефона</string>
-    <string name="telegram_username_description">Имя в Телеграм</string>
     <string name="next_button">Следующее</string>
     <string name="prev_button">Предыдущее</string>
+    <string name="mona_lisa">Мона Лиза</string>
+    <string name="mona_lisa_artist">Леонардо да Винчи</string>
 </resources>

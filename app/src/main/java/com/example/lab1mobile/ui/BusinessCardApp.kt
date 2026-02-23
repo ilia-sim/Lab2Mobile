@@ -49,24 +49,24 @@ const val PHONE_SPEC = "spec:width=411dp,height=891dp"
 val artworks = listOf(
     Artwork(
         id = 1,
-        title = "Mona Lisa",
-        imageResId = R.drawable.avatar,
-        artist = "dunno",
-        year = 1728
+        titleResId = R.string.mona_lisa,
+        imageResId = R.drawable.mona_lisa,
+        artistResId = R.string.mona_lisa_artist,
+        yearResId = R.string.mona_lisa_year
     ),
     Artwork(
         id = 2,
-        title = "Starry Night",
+        titleResId = R.string.mona_lisa,
         imageResId = R.drawable.mona_lisa,
-        artist = "dunno",
-        year = 1728
+        artistResId = R.string.mona_lisa_artist,
+        yearResId = R.string.mona_lisa_year
     ),
     Artwork(
         id = 3,
-        title = "The Scream",
-        imageResId = R.drawable.avatar,
-        artist = "dunno",
-        year = 1728
+        titleResId = R.string.mona_lisa,
+        imageResId = R.drawable.mona_lisa,
+        artistResId = R.string.mona_lisa_artist,
+        yearResId = R.string.mona_lisa_year
     )
 )
 
@@ -140,6 +140,8 @@ fun PortraitLayout(
     modifier: Modifier = Modifier,
     artworkIndex: MutableState<Int>
 ) {
+    val artwork = artworks[artworkIndex.value]
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -149,12 +151,11 @@ fun PortraitLayout(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.primaryContainer)
                 .size(dimensionResource(R.dimen.avatar_size)),
-            imageResId = artworks[artworkIndex.value].imageResId,
-            contentDescription = artworks[artworkIndex.value].title
+            artwork = artwork
         )
         ImageDescription(
             modifier = Modifier.fillMaxWidth(),
-            artworkIndex = artworkIndex
+            artwork = artwork
         )
         BottonPanel(
             modifier = Modifier.fillMaxWidth(),
@@ -171,9 +172,11 @@ fun LandscapeLayout(modifier: Modifier = Modifier) {
 @Composable
 fun CenteredImage(
     modifier: Modifier,
-    imageResId: Int,
-    contentDescription: String?
+    artwork: Artwork
 ) {
+    val imageResId = artwork.imageResId
+    val contentDescription = stringResource(artwork.titleResId)
+
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -189,16 +192,18 @@ fun CenteredImage(
 @Composable
 fun ImageDescription(
     modifier: Modifier = Modifier,
-    artworkIndex: MutableState<Int>
+    artwork: Artwork
 ) {
-    val art = artworks[artworkIndex.value]
+    val title = stringResource(artwork.titleResId)
+    val artist = stringResource(artwork.artistResId)
+    val year = stringResource(artwork.yearResId)
 
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = art.title,
+            text = title,
             fontSize = dimensionResource(R.dimen.big_font_size).value.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
@@ -206,7 +211,7 @@ fun ImageDescription(
         )
         Spacer(Modifier.width(dimensionResource(R.dimen.spacing)))
         Text(
-            text = "${art.artist} (${art.year})",
+            text = artist + " (${year})",
             fontSize = dimensionResource(R.dimen.normal_font_size).value.sp,
             textAlign = TextAlign.Center,
         )

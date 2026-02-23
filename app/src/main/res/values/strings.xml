@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Business Card</string>
-    <string name="person_name">Simonov Ilya</string>
-    <string name="person_info">Third year software engineering student</string>
-    <string name="avatar_description">My avatar</string>
-    <string name="email" translatable="false">my_non_existing_mail@dunno.com</string>
-    <string name="phone_number" translatable="false">+79876543210</string>
-    <string name="telegram_username" translatable="false">\@ThoseWhoKnow6767</string>
-    <string name="contacts">Contacts:</string>
-    <string name="email_description">Email address</string>
-    <string name="phone_number_description">Phone number</string>
-    <string name="telegram_username_description">Telegram username</string>
     <string name="next_button">Next</string>
     <string name="prev_button">Previous</string>
+    <string name="mona_lisa">Mona Lisa</string>
+    <string name="mona_lisa_artist">Leonardo da Vinci</string>
+    <string name="mona_lisa_year" translatable="false">1517</string>
 </resources>
