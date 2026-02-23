@@ -2,7 +2,7 @@
 <resources>
     <dimen name="big_font_size">32.sp</dimen>
     <dimen name="normal_font_size">16.sp</dimen>
-    <dimen name="avatar_size">130.dp</dimen>
-    <dimen name="edges_padding">24.dp</dimen>
+    <dimen name="avatar_size">200.dp</dimen>
+    <dimen name="edges_padding">0.dp</dimen>
     <dimen name="spacing">8.dp</dimen>
 </resources>

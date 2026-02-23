@@ -38,6 +38,8 @@ import androidx.compose.ui.unit.sp
 import com.example.lab1mobile.R
 import com.example.lab1mobile.ui.theme.BusinessCardTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
 
 const val TABLET_SPEC = "spec:width=1280dp,height=800dp,dpi=240"
 const val PHONE_SPEC = "spec:width=411dp,height=891dp"
@@ -88,9 +90,15 @@ fun BusinessCardPreview() {
             val padding = dimensionResource(R.dimen.edges_padding)
 
             if (isLandscape) {
-                LandscapeLayout(Modifier.safeContentPadding().padding(padding))
+                LandscapeLayout(Modifier
+                    .safeContentPadding()
+                    .padding(padding)
+                )
             } else {
-                PortraitLayout(Modifier.safeContentPadding().padding(padding))
+                PortraitLayout(Modifier
+                    .safeContentPadding()
+                    .padding(padding)
+                )
             }
         }
     }
@@ -98,7 +106,26 @@ fun BusinessCardPreview() {
 
 @Composable
 fun PortraitLayout(modifier: Modifier = Modifier) {
-
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
+    ) {
+        CenteredImage(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .fillMaxWidth(),
+//                .size(dimensionResource(R.dimen.avatar_size)),
+            imageResId = R.drawable.avatar,
+            contentDescription = "smth"
+        )
+        ImageDescription(
+            modifier = Modifier.fillMaxWidth()
+        )
+        BottonPanel(
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }
 
 @Composable
@@ -120,5 +147,53 @@ fun CenteredImage(
             painter = painterResource(id = imageResId),
             contentDescription = contentDescription
         )
+    }
+}
+
+@Composable
+fun ImageDescription(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.person_name),
+            fontSize = dimensionResource(R.dimen.big_font_size).value.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            color = colorResource(id = R.color.name_color)
+        )
+        Spacer(Modifier.width(dimensionResource(R.dimen.spacing)))
+        Text(
+            text = stringResource(R.string.person_info),
+            fontSize = dimensionResource(R.dimen.normal_font_size).value.sp,
+            textAlign = TextAlign.Center,
+        )
+    }
+}
+
+@Composable
+fun BottonPanel(
+    modifier: Modifier
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Button(
+            onClick = { /* Handle button click */ }
+        ) {
+            Text(
+                text = "Предыдущее"
+            )
+        }
+        Button(
+            onClick = { /* Handle button click */ }
+        ) {
+            Text(
+                text = "Следующее"
+            )
+        }
     }
 }
