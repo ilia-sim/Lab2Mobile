@@ -41,6 +41,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import com.example.lab1mobile.model.Artwork
+import androidx.compose.runtime.*
 
 const val TABLET_SPEC = "spec:width=1280dp,height=800dp,dpi=240"
 const val PHONE_SPEC = "spec:width=411dp,height=891dp"
@@ -56,7 +57,7 @@ val artworks = listOf(
     Artwork(
         id = 2,
         title = "Starry Night",
-        imageResId = R.drawable.avatar,
+        imageResId = R.drawable.mona_lisa,
         artist = "dunno",
         year = 1728
     ),
@@ -84,7 +85,7 @@ fun BusinessCard() {
             if (isLandscape) {
                 LandscapeLayout(Modifier.safeContentPadding().padding(padding))
             } else {
-                PortraitLayout(Modifier.safeContentPadding().padding(padding))
+//                PortraitLayout(Modifier.safeContentPadding().padding(padding))
             }
         }
     }
@@ -104,6 +105,8 @@ fun BusinessCard() {
 )
 @Composable
 fun BusinessCardPreview() {
+    val artworkIndex = remember { mutableIntStateOf(0) }
+
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
@@ -115,14 +118,17 @@ fun BusinessCardPreview() {
             val padding = dimensionResource(R.dimen.edges_padding)
 
             if (isLandscape) {
-                LandscapeLayout(Modifier
-                    .safeContentPadding()
-                    .padding(padding)
+                LandscapeLayout(
+                    modifier = Modifier
+                        .safeContentPadding()
+                        .padding(padding)
                 )
             } else {
-                PortraitLayout(Modifier
-                    .safeContentPadding()
-                    .padding(padding)
+                PortraitLayout(
+                    modifier = Modifier
+                        .safeContentPadding()
+                        .padding(padding),
+                    artworkIndex = artworkIndex
                 )
             }
         }
@@ -130,7 +136,10 @@ fun BusinessCardPreview() {
 }
 
 @Composable
-fun PortraitLayout(modifier: Modifier = Modifier) {
+fun PortraitLayout(
+    modifier: Modifier = Modifier,
+    artworkIndex: MutableState<Int>
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -139,16 +148,17 @@ fun PortraitLayout(modifier: Modifier = Modifier) {
         CenteredImage(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.primaryContainer)
-                .fillMaxWidth(),
-//                .size(dimensionResource(R.dimen.avatar_size)),
-            imageResId = R.drawable.avatar,
-            contentDescription = "smth"
+                .size(dimensionResource(R.dimen.avatar_size)),
+            imageResId = artworks[artworkIndex.value].imageResId,
+            contentDescription = artworks[artworkIndex.value].title
         )
         ImageDescription(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            artworkIndex = artworkIndex
         )
         BottonPanel(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            artworkIndex = artworkIndex
         )
     }
 }
@@ -170,19 +180,25 @@ fun CenteredImage(
     ) {
         Image(
             painter = painterResource(id = imageResId),
-            contentDescription = contentDescription
+            contentDescription = contentDescription,
+            modifier = Modifier.fillMaxSize()
         )
     }
 }
 
 @Composable
-fun ImageDescription(modifier: Modifier = Modifier) {
+fun ImageDescription(
+    modifier: Modifier = Modifier,
+    artworkIndex: MutableState<Int>
+) {
+    val art = artworks[artworkIndex.value]
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(R.string.person_name),
+            text = art.title,
             fontSize = dimensionResource(R.dimen.big_font_size).value.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
@@ -190,7 +206,7 @@ fun ImageDescription(modifier: Modifier = Modifier) {
         )
         Spacer(Modifier.width(dimensionResource(R.dimen.spacing)))
         Text(
-            text = stringResource(R.string.person_info),
+            text = "${art.artist} (${art.year})",
             fontSize = dimensionResource(R.dimen.normal_font_size).value.sp,
             textAlign = TextAlign.Center,
         )
@@ -199,7 +215,8 @@ fun ImageDescription(modifier: Modifier = Modifier) {
 
 @Composable
 fun BottonPanel(
-    modifier: Modifier
+    modifier: Modifier,
+    artworkIndex: MutableState<Int>
 ) {
     Row(
         modifier = modifier,
@@ -207,14 +224,20 @@ fun BottonPanel(
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Button(
-            onClick = { /* Handle button click */ }
+            onClick = {
+                if (artworkIndex.value > 0)
+                    artworkIndex.value--;
+            }
         ) {
             Text(
                 text = "Предыдущее"
             )
         }
         Button(
-            onClick = { /* Handle button click */ }
+            onClick = {
+                if (artworkIndex.value < artworks.size - 1)
+                    artworkIndex.value++;
+            }
         ) {
             Text(
                 text = "Следующее"
