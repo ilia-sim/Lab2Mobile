@@ -5,8 +5,5 @@ data class Artwork(
     val title: String,
     val artist: String,
     val year: Int,
-    val medium: String,
-    val dimensions: String,
-    val imageUrl: String? = null,
-    val isOnDisplay: Boolean = false
+    val imageResId: Int
 )

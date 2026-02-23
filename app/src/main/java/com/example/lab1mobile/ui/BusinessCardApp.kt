@@ -40,9 +40,34 @@ import com.example.lab1mobile.ui.theme.BusinessCardTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
+import com.example.lab1mobile.model.Artwork
 
 const val TABLET_SPEC = "spec:width=1280dp,height=800dp,dpi=240"
 const val PHONE_SPEC = "spec:width=411dp,height=891dp"
+
+val artworks = listOf(
+    Artwork(
+        id = 1,
+        title = "Mona Lisa",
+        imageResId = R.drawable.avatar,
+        artist = "dunno",
+        year = 1728
+    ),
+    Artwork(
+        id = 2,
+        title = "Starry Night",
+        imageResId = R.drawable.avatar,
+        artist = "dunno",
+        year = 1728
+    ),
+    Artwork(
+        id = 3,
+        title = "The Scream",
+        imageResId = R.drawable.avatar,
+        artist = "dunno",
+        year = 1728
+    )
+)
 
 @Composable
 fun BusinessCard() {
