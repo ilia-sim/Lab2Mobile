@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Art Gallery</string>
     <string name="next_button">Next</string>
     <string name="prev_button">Previous</string>
     <string name="mona_lisa">Mona Lisa</string>

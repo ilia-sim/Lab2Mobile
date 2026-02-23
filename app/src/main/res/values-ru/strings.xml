@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Галерея Искусства</string>
     <string name="next_button">Следующее</string>
     <string name="prev_button">Предыдущее</string>
     <string name="mona_lisa">Мона Лиза</string>

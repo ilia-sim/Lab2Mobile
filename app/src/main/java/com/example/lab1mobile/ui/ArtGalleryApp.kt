@@ -1,30 +1,20 @@
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Phone
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
@@ -33,10 +23,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.lab1mobile.R
-import com.example.lab1mobile.ui.theme.BusinessCardTheme
+import com.example.lab1mobile.ui.theme.ArtGalleryTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
@@ -49,17 +38,17 @@ const val PHONE_SPEC = "spec:width=411dp,height=891dp"
 val artworks = listOf(
     Artwork(
         id = 1,
-        titleResId = R.string.mona_lisa,
-        imageResId = R.drawable.mona_lisa,
-        artistResId = R.string.mona_lisa_artist,
-        yearResId = R.string.mona_lisa_year
-    ),
-    Artwork(
-        id = 2,
         titleResId = R.string.devil,
         imageResId = R.drawable.devil,
         artistResId = R.string.devil_artist,
         yearResId = R.string.devil_year
+    ),
+    Artwork(
+        id = 2,
+        titleResId = R.string.mona_lisa,
+        imageResId = R.drawable.mona_lisa,
+        artistResId = R.string.mona_lisa_artist,
+        yearResId = R.string.mona_lisa_year
     ),
     Artwork(
         id = 3,
@@ -71,11 +60,13 @@ val artworks = listOf(
 )
 
 @Composable
-fun BusinessCard() {
+fun ArtGallery() {
+    val artworkIndex = remember { mutableIntStateOf(0) }
+
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-    BusinessCardTheme {
+    ArtGalleryTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -83,9 +74,18 @@ fun BusinessCard() {
             val padding = dimensionResource(R.dimen.edges_padding)
 
             if (isLandscape) {
-                LandscapeLayout(Modifier.safeContentPadding().padding(padding))
+                LandscapeLayout(
+                    modifier = Modifier
+                        .safeContentPadding()
+                        .padding(padding)
+                )
             } else {
-//                PortraitLayout(Modifier.safeContentPadding().padding(padding))
+                PortraitLayout(
+                    modifier = Modifier
+                        .safeContentPadding()
+                        .padding(padding),
+                    artworkIndex = artworkIndex
+                )
             }
         }
     }
@@ -104,13 +104,13 @@ fun BusinessCard() {
     uiMode = 33,
 )
 @Composable
-fun BusinessCardPreview() {
+fun ArtGalleryPreview() {
     val artworkIndex = remember { mutableIntStateOf(0) }
 
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-    BusinessCardTheme {
+    ArtGalleryTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -149,7 +149,7 @@ fun PortraitLayout(
     ) {
         CenteredImage(
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
+//                .background(MaterialTheme.colorScheme.primaryContainer)
                 .size(dimensionResource(R.dimen.avatar_size)),
             artwork = artwork
         )
@@ -244,7 +244,7 @@ fun BottonPanel(
                 if (artworkIndex.value < artworks.size - 1)
                     artworkIndex.value++;
             },
-            enabled = artworkIndex.value != artworks.size - 1
+            enabled = artworkIndex.value != artworks.size - 1,
         ) {
             Text(
                 text = stringResource(R.string.next_button)
