@@ -56,17 +56,17 @@ val artworks = listOf(
     ),
     Artwork(
         id = 2,
-        titleResId = R.string.mona_lisa,
-        imageResId = R.drawable.mona_lisa,
-        artistResId = R.string.mona_lisa_artist,
-        yearResId = R.string.mona_lisa_year
+        titleResId = R.string.devil,
+        imageResId = R.drawable.devil,
+        artistResId = R.string.devil_artist,
+        yearResId = R.string.devil_year
     ),
     Artwork(
         id = 3,
-        titleResId = R.string.mona_lisa,
-        imageResId = R.drawable.mona_lisa,
-        artistResId = R.string.mona_lisa_artist,
-        yearResId = R.string.mona_lisa_year
+        titleResId = R.string.starry_night,
+        imageResId = R.drawable.starry_night,
+        artistResId = R.string.starry_night_artist,
+        yearResId = R.string.starry_night_year
     )
 )
 
@@ -232,7 +232,8 @@ fun BottonPanel(
             onClick = {
                 if (artworkIndex.value > 0)
                     artworkIndex.value--;
-            }
+            },
+            enabled = artworkIndex.value != 0
         ) {
             Text(
                 text = stringResource(R.string.prev_button)
@@ -242,7 +243,8 @@ fun BottonPanel(
             onClick = {
                 if (artworkIndex.value < artworks.size - 1)
                     artworkIndex.value++;
-            }
+            },
+            enabled = artworkIndex.value != artworks.size - 1
         ) {
             Text(
                 text = stringResource(R.string.next_button)

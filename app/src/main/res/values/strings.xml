@@ -5,4 +5,10 @@
     <string name="mona_lisa">Mona Lisa</string>
     <string name="mona_lisa_artist">Leonardo da Vinci</string>
     <string name="mona_lisa_year" translatable="false">1517</string>
+    <string name="devil">Lucifer</string>
+    <string name="devil_artist">Franz Stuck</string>
+    <string name="devil_year" translatable="false">1890</string>
+    <string name="starry_night">Starry Night</string>
+    <string name="starry_night_artist">Van Gogh</string>
+    <string name="starry_night_year" translatable="false">1889</string>
 </resources>

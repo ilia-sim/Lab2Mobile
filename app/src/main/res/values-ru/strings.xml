@@ -4,4 +4,8 @@
     <string name="prev_button">Предыдущее</string>
     <string name="mona_lisa">Мона Лиза</string>
     <string name="mona_lisa_artist">Леонардо да Винчи</string>
+    <string name="devil">Люцифер</string>
+    <string name="devil_artist">Франц Штук</string>
+    <string name="starry_night">Звёздная ночь</string>
+    <string name="starry_night_artist">Ван Гог</string>
 </resources>
