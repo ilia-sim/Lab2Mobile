@@ -28,6 +28,7 @@ import com.example.lab1mobile.R
 import com.example.lab1mobile.ui.theme.ArtGalleryTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material3.Button
 import com.example.lab1mobile.model.Artwork
 import androidx.compose.runtime.*
@@ -77,7 +78,8 @@ fun ArtGallery() {
                 LandscapeLayout(
                     modifier = Modifier
                         .safeContentPadding()
-                        .padding(padding)
+                        .padding(padding),
+                    artworkIndex = artworkIndex
                 )
             } else {
                 PortraitLayout(
@@ -121,7 +123,8 @@ fun ArtGalleryPreview() {
                 LandscapeLayout(
                     modifier = Modifier
                         .safeContentPadding()
-                        .padding(padding)
+                        .padding(padding),
+                    artworkIndex = artworkIndex
                 )
             } else {
                 PortraitLayout(
@@ -149,7 +152,6 @@ fun PortraitLayout(
     ) {
         CenteredImage(
             modifier = Modifier
-//                .background(MaterialTheme.colorScheme.primaryContainer)
                 .size(dimensionResource(R.dimen.avatar_size)),
             artwork = artwork
         )
@@ -165,8 +167,42 @@ fun PortraitLayout(
 }
 
 @Composable
-fun LandscapeLayout(modifier: Modifier = Modifier) {
+fun LandscapeLayout(
+    modifier: Modifier = Modifier,
+    artworkIndex: MutableState<Int>
+) {
+    val artwork = artworks[artworkIndex.value]
 
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.spacing))
+    ) {
+        CenteredImage(
+            modifier = Modifier
+                .size(dimensionResource(R.dimen.avatar_size_landscape))
+                .weight(1f),
+            artwork = artwork
+        )
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            ImageDescription(
+                modifier = Modifier.fillMaxWidth(),
+                artwork = artwork
+            )
+            Spacer(modifier = Modifier.size(dimensionResource(R.dimen.spacing)))
+            BottonPanel(
+                modifier = Modifier.fillMaxWidth(),
+                artworkIndex = artworkIndex
+            )
+        }
+    }
 }
 
 @Composable

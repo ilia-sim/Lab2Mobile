@@ -3,6 +3,7 @@
     <dimen name="big_font_size">32.sp</dimen>
     <dimen name="normal_font_size">16.sp</dimen>
     <dimen name="avatar_size">500.dp</dimen>
+    <dimen name="avatar_size_landscape">1000.dp</dimen>>
     <dimen name="edges_padding">0.dp</dimen>
     <dimen name="spacing">8.dp</dimen>
 </resources>
