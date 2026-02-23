@@ -6,4 +6,5 @@
     <dimen name="avatar_size_landscape">1000.dp</dimen>>
     <dimen name="edges_padding">0.dp</dimen>
     <dimen name="spacing">8.dp</dimen>
+    <dimen name="landscape_spacing">100.dp</dimen>
 </resources>

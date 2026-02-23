@@ -190,8 +190,9 @@ fun LandscapeLayout(
                 .weight(1f)
                 .fillMaxHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
+            Spacer(modifier = Modifier.size(dimensionResource(R.dimen.spacing)))
             ImageDescription(
                 modifier = Modifier.fillMaxWidth(),
                 artwork = artwork
@@ -269,7 +270,8 @@ fun BottonPanel(
                 if (artworkIndex.value > 0)
                     artworkIndex.value--;
             },
-            enabled = artworkIndex.value != 0
+            enabled = artworkIndex.value != 0,
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(R.string.prev_button)
@@ -281,6 +283,7 @@ fun BottonPanel(
                     artworkIndex.value++;
             },
             enabled = artworkIndex.value != artworks.size - 1,
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(R.string.next_button)
