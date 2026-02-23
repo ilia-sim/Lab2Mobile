@@ -8,4 +8,6 @@
     <string name="email_description">Электронная почта</string>
     <string name="phone_number_description">Номер телефона</string>
     <string name="telegram_username_description">Имя в Телеграм</string>
+    <string name="next_button">Следующее</string>
+    <string name="prev_button">Предыдущее</string>
 </resources>

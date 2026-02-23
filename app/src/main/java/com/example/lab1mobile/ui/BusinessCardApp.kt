@@ -230,7 +230,7 @@ fun BottonPanel(
             }
         ) {
             Text(
-                text = "Предыдущее"
+                text = stringResource(R.string.prev_button)
             )
         }
         Button(
@@ -240,7 +240,7 @@ fun BottonPanel(
             }
         ) {
             Text(
-                text = "Следующее"
+                text = stringResource(R.string.next_button)
             )
         }
     }

@@ -11,4 +11,6 @@
     <string name="email_description">Email address</string>
     <string name="phone_number_description">Phone number</string>
     <string name="telegram_username_description">Telegram username</string>
+    <string name="next_button">Next</string>
+    <string name="prev_button">Previous</string>
 </resources>
